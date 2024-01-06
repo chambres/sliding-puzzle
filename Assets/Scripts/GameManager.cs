@@ -74,11 +74,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text WWinText;
 
     public void ButtonResetBoard(){
-        if(WWinText.text != ""){
+        //if(WWinText.text != ""){
             ResetBoard();
             GameObject.Find("Move Count").GetComponent<MoveCounterBehaviour>().ResetCount();
             WWinText.text = "";
-        }
+        //}
 
     }
 
@@ -142,49 +142,49 @@ public class GameManager : MonoBehaviour
         return (sum%2==0)? true : false;
     }
 
-    // public void initiateShuffledBoard(int[,] board) {
-    //     int pos = 0;
-    //     int count = 0;
-    //     for (int i=0; i<board.GetLength(0); i++) {
-    //         for (int j=0; j<board.GetLength(1); j++) {
-
-    //             int index = availableNumbers[Random.Range(0, availableNumbers.Count)];
-    //             count++;
-    //             Debug.Log("pos: " + count);
-
-
-    //             foreach(var record in availableNumbers) {
-    //                 Debug.Log("availableNumbers"+record);
-    //             }
-    //             availableNumbers.Remove(index);
-
-
-    //             Debug.Log(index);
-
-    //             board[i, j] = index;
-    //             //Debug.Log("index="+index+" i="+i+" j="+j);
-    //             if (index == 0)
-    //                 continue;
-    //             Tiles.Add(generateTile(index, i, j));
-    //             pos++;
-    //         }
-    //     }
-    // }
-
     public void initiateShuffledBoard(int[,] board) {
-    int pos = 0;
-    for (int i = 0; i < board.GetLength(0); i++) {
-        for (int j = 0; j < board.GetLength(1); j++) {
-            if (i == board.GetLength(0) - 1 && j == board.GetLength(1) - 1) {
-                board[i, j] = 0;
-            } else {
-                board[i, j] = pos + 1;
-                Tiles.Add(generateTile(pos + 1, i, j));
+        int pos = 0;
+        int count = 0;
+        for (int i=0; i<board.GetLength(0); i++) {
+            for (int j=0; j<board.GetLength(1); j++) {
+
+                int index = availableNumbers[Random.Range(0, availableNumbers.Count)];
+                count++;
+                Debug.Log("pos: " + count);
+
+
+                foreach(var record in availableNumbers) {
+                    Debug.Log("availableNumbers"+record);
+                }
+                availableNumbers.Remove(index);
+
+
+                Debug.Log(index);
+
+                board[i, j] = index;
+                //Debug.Log("index="+index+" i="+i+" j="+j);
+                if (index == 0)
+                    continue;
+                Tiles.Add(generateTile(index, i, j));
                 pos++;
             }
         }
     }
-    }
+
+    // public void initiateShuffledBoard(int[,] board) {
+    // int pos = 0;
+    // for (int i = 0; i < board.GetLength(0); i++) {
+    //     for (int j = 0; j < board.GetLength(1); j++) {
+    //         if (i == board.GetLength(0) - 1 && j == board.GetLength(1) - 1) {
+    //             board[i, j] = 0;
+    //         } else {
+    //             board[i, j] = pos + 1;
+    //             Tiles.Add(generateTile(pos + 1, i, j));
+    //             pos++;
+    //         }
+    //     }
+    // }
+    // }
 
     public Tile generateTile(int index, int i, int j) {
         Tile go = Instantiate(TilePrefab);
