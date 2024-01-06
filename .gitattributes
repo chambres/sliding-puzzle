@@ -2,3 +2,4 @@
 * text=auto
 *.meta linguist-detectable=false
 *.shader linguist-detectable=false
+*.cginc linguist-detectable=false
